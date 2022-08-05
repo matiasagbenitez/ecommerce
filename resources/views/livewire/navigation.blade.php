@@ -8,11 +8,14 @@
             <span>Categories</span>
         </a>
 
+        {{-- Logo --}}
         <a href="/" class="mx-6">
             <x-jet-application-mark class="block h-9 w-auto" />
         </a>
 
+        {{-- Barra de búsqueda + botón --}}
         @livewire('search')
+
 
     </div>
 </header>
