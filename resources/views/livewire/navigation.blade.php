@@ -1,7 +1,8 @@
 <header class="bg-neutral-600">
     <div class="container flex items-center h-16">
+
+        {{-- Icono hamburguesa --}}
         <a class="flex flex-col items-center justify-center px-3 bg-white bg-opacity-25 text-white cursor-pointer font-semibold h-full" href="#">
-            {{-- Icono hamburguesa --}}
             <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                 <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
@@ -16,15 +17,15 @@
         {{-- Barra de búsqueda + botón --}}
         @livewire('search')
 
-        <div class="ml-3 relative">
-
+        {{-- Dropdown de autenticación --}}
+        <div class="mx-4 relative">
             @auth
                 {{-- USUARIO AUTENTICADO --}}
                 <x-jet-dropdown align="right" width="48">
 
                     <x-slot name="trigger">
                         <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-                            <img class="h-8 w-8 rounded-full object-cover mx-2" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+                            <img class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
                         </button>
                     </x-slot>
 
@@ -57,7 +58,7 @@
                 <x-jet-dropdown align="right" width="48">
 
                     <x-slot name="trigger">
-                        <i class="fas fa-user-circle text-white text-3xl mx-2 cursor-pointer"></i>
+                        <i class="fas fa-user-circle text-white text-3xl cursor-pointer"></i>
                     </x-slot>
 
                     <x-slot name="content">
@@ -73,6 +74,9 @@
                 </x-jet-dropdown>
             @endauth
         </div>
+
+        {{-- Logo carrito --}}
+        @livewire('dropdown-cart')
 
     </div>
 </header>
