@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
+use Database\Seeders\ProductSeeder;
 use Database\Seeders\CategorySeeder;
 use Illuminate\Support\Facades\File;
 use Database\Seeders\SubcategorySeeder;
@@ -23,5 +24,6 @@ class DatabaseSeeder extends Seeder
         Storage::makeDirectory('subcategories');
         $this->call(SubcategorySeeder::class);
 
+        $this->call(ProductSeeder::class);
     }
 }
