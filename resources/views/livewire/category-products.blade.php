@@ -8,7 +8,7 @@
                         <article>
                             <figure>
                                 <a href="#">
-                                    <img class="h-48 w-full object-cover object-center"
+                                    <img class="h-48 w-60 object-cover object-center"
                                         src="{{ asset('storage/' . $product->image->first()->url) }}" alt="">
                                 </a>
                             </figure>
