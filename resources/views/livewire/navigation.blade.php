@@ -1,4 +1,16 @@
-<header class="bg-neutral-600">
+<style>
+    #navigation-menu {
+        height: calc(100vh - 4rem);
+    }
+
+    .navigation-link:hover .navigation-submenu {
+        display: block !important;
+    }
+</style>
+
+<header class="bg-neutral-600 sticky top-0">
+
+    {{-- Barra superior --}}
     <div class="container flex items-center h-16">
 
         {{-- Icono hamburguesa --}}
@@ -79,4 +91,32 @@
         @livewire('dropdown-cart')
 
     </div>
+
+    {{-- Menú subcategorías --}}
+    <nav id="navigation-menu" class="bg-neutral-600 bg-opacity-25 w-full absolute">
+        <div class="container h-full">
+            <div class="grid grid-cols-4 h-full relative">
+
+                <ul class="bg-white">
+                    @foreach ($categories as $category)
+                        <li class="text-neutral-500 hover:bg-orange-500 hover:text-white navigation-link">
+                            <a class="py-2 px-4 text-sm flex items-center" href="#">
+                                <span class="flex justify-center w-9">{!! $category->icon !!}</span>
+                                {{ $category->name }}
+                            </a>
+                            <div class="bg-gray-100 absolute w-3/4 h-full top-0 right-0 hidden navigation-submenu">
+                                <x-navigation-subcategories :category="$category" />
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+
+                <div class="col-span-3 bg-neutral-100">
+                    <x-navigation-subcategories :category="$categories->first()" />
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
 </header>
