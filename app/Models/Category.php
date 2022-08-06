@@ -14,6 +14,11 @@ class Category extends Model
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     // --------------------------- RELATIONSHIPS ---------------------------
     public function subcategories() {
         return $this->hasMany(Subcategory::class);

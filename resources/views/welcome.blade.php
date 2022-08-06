@@ -4,7 +4,9 @@
         @foreach ($categories as $category)
             <section class="mb-6">
                 {{-- Nombre categoría --}}
-                <h1 class="text-lg uppercase font-semibold text-neutral-700 mb-2">{{ $category->name }}</h1>
+                <a href="{{ route('categories.show', $category) }}">
+                    <h1 class="text-lg uppercase font-semibold text-neutral-700 hover:text-orange-500 hover:underline mb-2">{{ $category->name }}</h1>
+                </a>
 
                 {{-- Carrusel --}}
                 @livewire('category-products', ['category' => $category])
