@@ -10,6 +10,7 @@ use Livewire\WithPagination;
 class CategoryFilter extends Component
 {
     public $category, $subcategoryC, $brandC;
+    public $view = 'list';
 
     use WithPagination;
 
