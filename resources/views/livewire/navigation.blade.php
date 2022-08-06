@@ -1,4 +1,4 @@
-<header x-data="dropdown()" class="bg-neutral-600 sticky top-0">
+<header x-data="dropdown()" class="bg-neutral-600 sticky top-0 z-50">
 
     {{-- Barra superior --}}
     <div class="container flex items-center h-16 justify-between md:justify-start">
