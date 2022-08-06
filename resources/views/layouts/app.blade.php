@@ -61,6 +61,7 @@
             }
         </script>
 
+        @stack('script-glider')
 
     </body>
 </html>
