@@ -34,8 +34,7 @@ class Product extends Model
     }
 
     public function colors() {
-        return $this->belongsToMany(Color::class);
-        // return $this->belongsToMany(Color::class)->withPivot('quantity', 'id');
+        return $this->belongsToMany(Color::class)->withPivot('quantity', 'id');
     }
 
     public function sizes() {
