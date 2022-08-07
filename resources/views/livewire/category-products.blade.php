@@ -7,14 +7,14 @@
                     <li class="bg-white rounded-lg shadow mb-4 overflow-hidden {{ $loop->last ? '' : 'sm:mr-4' }}">
                         <article>
                             <figure>
-                                <a href="#">
+                                <a href="{{ route('products.show', $product)}}">
                                     <img class="h-48 w-full object-cover object-center"
                                         src="{{ asset('storage/' . $product->image->first()->url) }}" alt="">
                                 </a>
                             </figure>
                             <div class="p-2">
                                 <h1 class="font-semibold text-neutral-700"><a
-                                        href="#">{{ Str::limit($product->name, 25) }}</a></h1>
+                                        href="{{ route('products.show', $product)}}">{{ Str::limit($product->name, 25) }}</a></h1>
                                 <p class="text-sm text-neutral-500">USD ${{ $product->price }}</p>
                             </div>
                         </article>

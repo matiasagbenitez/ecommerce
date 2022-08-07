@@ -63,14 +63,14 @@
                         <li class="bg-white rounded-lg shadow mb-4 overflow-hidden">
                             <article>
                                 <figure>
-                                    <a href="#">
+                                    <a href="{{ route('products.show', $product)}}">
                                         <img class="h-48 w-full object-cover object-center"
                                             src="{{ asset('storage/' . $product->image->first()->url) }}" alt="">
                                     </a>
                                 </figure>
                                 <div class="p-3">
                                     <h1 class="font-semibold text-neutral-700"><a
-                                            href="#">{{ Str::limit($product->name, 25) }}</a></h1>
+                                            href="{{ route('products.show', $product)}}">{{ Str::limit($product->name, 25) }}</a></h1>
                                     <p class="text-sm text-neutral-500">USD ${{ $product->price }}</p>
                                 </div>
                             </article>
@@ -84,7 +84,7 @@
                         <li class="bg-white rounded-lg shadow mb-6 overflow-hidden">
                             <article class="flex">
                                 <figure>
-                                    <a href="#">
+                                    <a href="{{ route('products.show', $product)}}">
                                         <img class="h-full w-full object-cover object-center"
                                             src="{{ asset('storage/' . $product->image->first()->url) }}" alt="">
                                     </a>
@@ -93,7 +93,7 @@
                                     <div class="flex justify-between">
                                         <div>
                                             <h1 class="text-lg font-semibold text-neutral-700">
-                                                <a href="#">{{ $product->name }}</a>
+                                                <a href="{{ route('products.show', $product)}}">{{ $product->name }}</a>
                                             </h1>
                                             <p class="text-sm text-neutral-500">USD ${{ $product->price }}</p>
                                         </div>
@@ -110,9 +110,9 @@
                                     </div>
 
                                     <div class="mt-auto">
-                                        <x-jet-button class="bg-orange-300 hover:bg-orange-400">
+                                        <x-button class="bg-orange-300 hover:bg-orange-400" href="{{ route('products.show', $product)}}">
                                             More info...
-                                        </x-jet-button>
+                                        </x-button>
                                     </div>
                                 </div>
                             </article>
