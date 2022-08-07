@@ -12,7 +12,7 @@
     </div>
 
     {{-- Grid de productos y barra lateral --}}
-    <div class="grid grid-cols-5 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
 
         {{-- Barra lateral --}}
         <aside>
@@ -54,11 +54,11 @@
         </aside>
 
         {{-- Listado de productos --}}
-        <div class="col-span-4">
+        <div class="md:col-span-2 lg:col-span-4">
 
             {{-- Vista de GRID --}}
             @if ($view == 'grid')
-                <ul class="grid grid-cols-4 gap-6">
+                <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     @foreach ($products as $product)
                         <li class="bg-white rounded-lg shadow mb-4 overflow-hidden">
                             <article>
@@ -68,7 +68,7 @@
                                             src="{{ asset('storage/' . $product->image->first()->url) }}" alt="">
                                     </a>
                                 </figure>
-                                <div class="p-2">
+                                <div class="p-3">
                                     <h1 class="font-semibold text-neutral-700"><a
                                             href="#">{{ Str::limit($product->name, 25) }}</a></h1>
                                     <p class="text-sm text-neutral-500">USD ${{ $product->price }}</p>
@@ -85,11 +85,11 @@
                             <article class="flex">
                                 <figure>
                                     <a href="#">
-                                        <img class="h-48 w-full object-cover object-center"
+                                        <img class="h-full w-full object-cover object-center"
                                             src="{{ asset('storage/' . $product->image->first()->url) }}" alt="">
                                     </a>
                                 </figure>
-                                <div class="flex-1 py-4 px-6 flex flex-col">
+                                <div class="flex-1 py-2 px-4 flex flex-col">
                                     <div class="flex justify-between">
                                         <div>
                                             <h1 class="text-lg font-semibold text-neutral-700">
@@ -97,7 +97,7 @@
                                             </h1>
                                             <p class="text-sm text-neutral-500">USD ${{ $product->price }}</p>
                                         </div>
-                                        <div class="flex items-center">
+                                        <div class="flex">
                                             <ul class="flex text-sm">
                                                 <li><i class="fas fa-star text-yellow-500 mr-1"></i></li>
                                                 <li><i class="fas fa-star text-yellow-500 mr-1"></i></li>
@@ -111,7 +111,7 @@
 
                                     <div class="mt-auto">
                                         <x-jet-button class="bg-orange-300 hover:bg-orange-400">
-                                            More about...
+                                            More info...
                                         </x-jet-button>
                                     </div>
                                 </div>
