@@ -14,7 +14,7 @@
         @endforeach
     </div>
 
-    @push('script-glider')
+    @push('script')
         <script>
 
             Livewire.on('glider', function(id) {
