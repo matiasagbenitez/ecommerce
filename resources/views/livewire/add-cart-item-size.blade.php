@@ -24,6 +24,17 @@
         </select>
     </div>
 
+    <p class="text-gray-700 text-md my-2">Stock:
+
+        @if ($quantity)
+            {{ $quantity }}
+        @else
+            {{ $product->stock }}
+        @endif
+
+        units
+    </p>
+
     {{-- AGREGAR AL CARRITO --}}
     <div class="flex gap-5 mt-4">
 

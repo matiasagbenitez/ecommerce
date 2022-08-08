@@ -12,7 +12,7 @@ class AddCartItemColor extends Component
     public $qty = 1;
     public $quantity = 0;
     public $options = [
-        'color_id' => null,
+        'size_id' => null,
     ];
 
 
@@ -24,8 +24,9 @@ class AddCartItemColor extends Component
 
     public function updatedColorC($value) {
         $color = $this->product->colors->find($value);
-        $this->quantity = $color->pivot->quantity;
+        $this->quantity = qty_available($this->product->id, $color->id);
         $this->options['color'] = $color->name;
+        $this->options['color_id'] = $color->id;
     }
 
     public function decrement()
@@ -48,6 +49,9 @@ class AddCartItemColor extends Component
             'options' => $this->options,
             'weight' => '500'
         ]);
+
+        $this->quantity = qty_available($this->product->id, $this->colorC);
+        $this->reset('qty');
 
         $this->emitTo('dropdown-cart', 'render');
     }

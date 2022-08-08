@@ -15,7 +15,7 @@
                 -
             </x-jet-secondary-button>
 
-            <span class="mx-2">{{ $qty }} </span>
+            <span class="mx-2">{{ $qty }}</span>
 
             <x-jet-secondary-button
                 x-bind:disabled="$wire.qty >= $wire.quantity"
@@ -27,13 +27,15 @@
         </div>
 
         {{-- Botón agregar carrito --}}
-        <div class="flex-1"
-            wire:click="addItem"
-            wire:loading.attr="disabled"
-            wire:target="additem">
-            <x-button class="w-full bg-orange-500 hover:bg-orange-600">
+        <div class="flex-1">
+            <x-jet-secondary-button
+                x-bind:disabled="$wire.qty > $wire.quantity"
+                wire:click="addItem"
+                wire:loading.attr="disabled"
+                wire:target="additem"
+                class="w-full bg-orange-500 hover:bg-orange-600 text-white">
                 <span class="text-center">Add to cart</span>
-            </x-button>
+            </x-jet-secondary-button>
         </div>
 
     </div>
