@@ -51,7 +51,12 @@
 
         {{-- Botón agregar carrito --}}
         <div class="flex-1">
-            <x-jet-secondary-button x-bind:disabled="!$wire.quantity" class="w-full text-white bg-orange-500 hover:bg-orange-600 hover:text-white">
+            <x-jet-secondary-button
+                x-bind:disabled="!$wire.quantity"
+                class="w-full text-white bg-orange-500 hover:bg-orange-600 hover:text-white"
+                wire:click="addItem"
+                wire:loading.attr="disabled"
+                wire:target="additem">
                 <span class="text-center">Add to cart</span>
             </x-jet-secondary-button>
         </div>

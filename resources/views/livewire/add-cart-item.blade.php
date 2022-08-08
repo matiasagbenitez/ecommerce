@@ -27,7 +27,10 @@
         </div>
 
         {{-- Botón agregar carrito --}}
-        <div class="flex-1">
+        <div class="flex-1"
+            wire:click="addItem"
+            wire:loading.attr="disabled"
+            wire:target="additem">
             <x-button class="w-full bg-orange-500 hover:bg-orange-600">
                 <span class="text-center">Add to cart</span>
             </x-button>
