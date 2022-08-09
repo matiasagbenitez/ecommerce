@@ -139,12 +139,30 @@
 
             <div class="text-gray-700 mt-3">
                 <p class="flex justify-between items-center">Subtotal: <span class="font-semibold">${{ Cart::subtotal() }}</span> </p>
-                <p class="flex justify-between items-center">Shipment: <span class="font-semibold">Free</span> </p>
+                <p class="flex justify-between items-center">
+                    Shipment:
+                    <span class="font-semibold">
+                        @if ($shipping_type == 1 || $shipping_cost == 0)
+                            Free
+                        @else
+                            ${{ $shipping_cost }}
+                        @endif
+                    </span>
+                </p>
             </div>
 
             <hr class="my-3">
 
-            <p class="flex justify-between items-center text-gray-700 font-bold">Total: <span class="font-semibold">${{ Cart::subtotal() }}</span> </p>
+            <p class="flex justify-between items-center text-gray-700 font-bold">
+                Total:
+                <span class="font-semibold">
+                    @if ($shipping_type == 1 || $shipping_cost == 0)
+                        ${{ Cart::subtotal() }}
+                    @else
+                        ${{ Cart::subtotal() + $shipping_cost }}
+                    @endif
+                </span>
+            </p>
 
         </div>
     </div>
