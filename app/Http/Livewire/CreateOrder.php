@@ -8,6 +8,7 @@ use App\Models\Department;
 
 class CreateOrder extends Component
 {
+    public $shipping_type = 1;
     public $departments, $cities = [], $districts = [];
     public $department_id = '', $city_id = '', $district_id = '';
     public $adress, $reference;

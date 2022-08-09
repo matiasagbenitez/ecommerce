@@ -4,6 +4,7 @@
 
         <p class="mb-3 text-lg text-gray-700 font-semibold">Contact data</p>
 
+        {{-- Datos de contacto --}}
         <div class="bg-white rounded-lg shadow p-4">
             <div class="mb-3">
                 <x-jet-label value="Receptor" class="mb-2" />
@@ -16,24 +17,23 @@
             </div>
         </div>
 
-        <div>
+        {{-- Datos de envío --}}
+        <div x-data="{ shipping_type: @entangle('shipping_type') }">
             <p class="mt-6 mb-3 text-lg text-gray-700 font-semibold">Shipment data</p>
 
             <label class="bg-white rounded-lg shadow p-4 mt-3 flex items-center gap-3">
-                <input type="radio" name="shipment" class="text-gray-600">
+                <input x-model="shipping_type" type="radio" value="1" name="shipping_type" class="text-gray-600">
                 <span class="text-sm text-gray-700">Pick up in store (124 Conch Street)</span>
                 <span class="font-semibold text-gray-800 ml-auto">Free!</span>
             </label>
 
            <div class="bg-white rounded-lg shadow">
                 <label class="p-4 mt-3 flex items-center gap-3">
-                    <input type="radio" name="shipment" class="text-gray-600">
+                    <input x-model="shipping_type" type="radio" value="2" name="shipping_type" class="text-gray-600">
                     <span class="text-sm text-gray-700">Home delivery</span>
                 </label>
 
-                <hr class="pb-3">
-
-                <div class="px-4 pb-4 grid grid-cols-2 gap-5">
+                <div class="px-4 pb-4 grid grid-cols-2 gap-5 {{ $shipping_type != 2 ? 'hidden' : ''}}"">
 
                     {{-- Departamentos --}}
                     <div>
