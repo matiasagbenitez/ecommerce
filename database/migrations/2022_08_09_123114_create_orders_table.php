@@ -24,6 +24,7 @@ return new class extends Migration
             $table->json('content');
 
             $table->string('adress')->nullable();
+            $table->string('references')->nullable();
 
             $table->unsignedBigInteger('department_id')->nullable();
             $table->foreign('department_id')->references('id')->on('departments');
