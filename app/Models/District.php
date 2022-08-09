@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class District extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id', 'created_at', 'updated_at'];
+
+    // ---------------------- RELATIONSHIPS ----------------------
+    public function orders() {
+        return $this->hasMany(Order::class);
+    }
 }
