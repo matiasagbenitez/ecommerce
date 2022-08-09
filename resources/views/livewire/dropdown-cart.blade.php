@@ -47,7 +47,7 @@
                     <p class="text-gray-700 text-md">USD ${{ Cart::subtotal() }}</p>
                 </div>
                 <div class="px-2 pb-2">
-                    <x-button class="w-full bg-orange-500 hover:bg-orange-600">
+                    <x-button href="{{ route('shopping-cart') }}" class="w-full bg-orange-500 hover:bg-orange-600">
                         Go to cart
                     </x-button>
                 </div>

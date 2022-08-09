@@ -6,7 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SearchController;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Livewire\ShoppingCart;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +26,9 @@ Route::get('categories/{category}', [CategoryController::class, 'show'])->name('
 // Productos
 Route::get('products/{product}', [ProductController::class, 'show'])->name('products.show');
 Route::get('search', SearchController::class)->name('search.results');
+
+// Carrito de compras
+Route::get('shopping-cart', ShoppingCart::class)->name('shopping-cart');
 
 Route::middleware([
     'auth:sanctum',
