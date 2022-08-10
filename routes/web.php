@@ -35,11 +35,10 @@ Route::get('search', SearchController::class)->name('search.results');
 Route::get('shopping-cart', ShoppingCart::class)->name('shopping-cart');
 
 // Órdenes
-Route::get('orders/create', CreateOrder::class)->middleware('auth')->name('orders.create');
-Route::get('orders/{order}', [OrderController::class, 'show'])->middleware('auth')->name('orders.show');
-Route::get('orders/{order}/payment', PaymentOrder::class)->middleware('auth')->name('orders.payment');
-Route::get('orders/{order}/pay', [OrderController::class, 'pay'])->middleware('auth')->name('orders.pay');
-
-
-
-Route::post('webhooks', WebhooksController::class);
+Route::middleware(['auth'])->group(function() {
+    Route::get('orders/create', CreateOrder::class)->name('orders.create');
+    Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+    Route::get('orders/{order}/payment', PaymentOrder::class)->name('orders.payment');
+    Route::get('orders/{order}/pay', [OrderController::class, 'pay'])->name('orders.pay');
+    Route::post('webhooks', WebhooksController::class);
+});
