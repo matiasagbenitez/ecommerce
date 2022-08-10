@@ -106,17 +106,20 @@
             </table>
         </div>
 
-        <div class="bg-white rounded-lg shadow-lg mt-4 p-5 flex justify-between items-center">
-            <img class="h-16" src="{{ asset('formas-pago.png') }}" alt="Imagen medios de pago">
-            <div class="text-gray-700">
-                <p class="text-sm text-right">Subtotal: ${{ $order->total }}</p>
-                <p class="text-sm text-right">Shipment: ${{ $order->shipping_cost }}</p>
-                <p class="text-lg font-bold uppercase text-right">Total: ${{ $order->shipping_cost + $order->total }}</p>
+        <div class="bg-white rounded-lg shadow-lg mt-4 p-3">
+            <p class="font-bold text-gray-700 uppercase">Payment</p>
+            <div class="flex justify-between items-center">
+                <img class="h-14" src="{{ asset('formas-pago.png') }}" alt="Imagen medios de pago">
+                <div class="text-gray-700 flex items-center gap-5">
+                    <div>
+                        <p class="text-xs text-right italic">Subtotal: ${{ $order->total - $order->shipping_cost }}</p>
+                        <p class="text-xs text-right italic">Shipment: ${{ $order->shipping_cost }}</p>
+                        <p class="text-lg font-bold uppercase text-right">Total: ${{ $order->shipping_cost + $order->total }}</p>
+                    </div>
+                    <div class="cho-container p-3">
 
-                <div class="cho-container">
-
+                    </div>
                 </div>
-
             </div>
         </div>
     </div>
