@@ -36,4 +36,9 @@ return [
         'token' => env('MP_ACCESS_TOKEN'),
     ],
 
+    'paypal' => [
+        'client_id' => env('PAYPAL_CLIENT_ID'),
+        'secret_key' => env('PAYPAL_SECRET_KEY'),
+    ],
+
 ];
