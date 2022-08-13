@@ -16,7 +16,7 @@ class OrderController extends Controller
             $orders->where('status', request('status'));
         }
 
-        $orders = $orders->paginate(10);
+        $orders = $orders->latest()->paginate(10);
 
         $pendiente = Order::where('status', 1)->where('user_id', auth()->user()->id)->count();
         $pagado = Order::where('status', 2)->where('user_id', auth()->user()->id)->count();
