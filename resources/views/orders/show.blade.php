@@ -30,8 +30,13 @@
             </div>
         </div>
 
-        <div class="bg-white rounded-lg shadow-lg p-3">
+        <div class="bg-white rounded-lg shadow-lg p-3 flex items-center justify-between">
             <p class="text-gray-700 uppercase">Order<span class="font-semibold"> #{{ $order->id }} </span></p>
+            @if ($order->status == 1)
+                <x-jet-secondary-button href="{{ route('orders.payment', $order) }}" class="px-5 bg-orange-500 border-orange-500 text-white font-bold hover:text-white hover:bg-orange-600">
+                    Go pay
+                </x-jet-secondary-button>
+            @endif
         </div>
 
         <div class="bg-white rounded-lg shadow-lg p-3 my-4">
