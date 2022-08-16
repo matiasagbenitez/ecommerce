@@ -115,4 +115,13 @@
 
         </div>
     </div>
+
+    @if ($this->subcategory)
+        @if ($this->subcategory->size)
+            @livewire('admin.size-product', ['product' => $product], key('size-product-' . $product->id))
+        @elseif ($this->subcategory->color)
+            @livewire('admin.color-product', ['product' => $product], key('color-product-' . $product->id))
+        @endif
+    @endif
+
 </div>
