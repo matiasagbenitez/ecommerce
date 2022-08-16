@@ -72,7 +72,7 @@
         {{-- BRANDS --}}
         <div>
             <x-jet-label class="mb-2" value="Brand" />
-            <select class="input-control w-full">
+            <select class="input-control w-full" wire:model="brand_id">
                 <option value="" disabled selected>Select a brand</option>
                 @foreach ($brands as $brand)
                     <option value="{{ $brand->id }}">{{ $brand->name }}</option>
@@ -92,8 +92,8 @@
         @if ($subcategory_id)
             @if (!$this->subcategory->color && !$this->subcategory->color)
                 <div>
-                    <x-jet-label wire:model="quantity" class="mb-2" value="Quantity" />
-                    <x-jet-input type="number" class="w-full" />
+                    <x-jet-label class="mb-2" value="Quantity" />
+                    <x-jet-input wire:model="quantity" type="number" class="w-full" />
                     <x-jet-input-error class="mt-2 text-xs font-semibold" for="quantity" />
                 </div>
             @endif

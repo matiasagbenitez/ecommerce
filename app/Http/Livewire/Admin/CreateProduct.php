@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\Subcategory;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
@@ -64,7 +65,26 @@ class CreateProduct extends Component
                 $rules['quantity'] = 'required';
             }
         }
+
         $this->validate($rules);
+
+        $product = new Product();
+        $product->name = $this->name;
+        $product->slug = $this->slug;
+        $product->description = $this->description;
+        $product->subcategory_id = $this->subcategory_id;
+        $product->brand_id = $this->brand_id;
+        $product->price = $this->price;
+
+        if ($this->subcategory_id) {
+            if (!$this->subcategory->color && !$this->subcategory->color) {
+                $product->quantity = $this->quantity;
+            }
+        }
+
+        $product->save();
+
+        return redirect()->route('admin.index');
     }
 
     public function render()
