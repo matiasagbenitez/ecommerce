@@ -16,6 +16,7 @@
                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
             </select>
+            <x-jet-input-error class="mt-2 text-xs font-semibold" for="category_id" />
         </div>
 
         {{-- SELECT SUBCATEGORIES --}}
@@ -27,39 +28,45 @@
                     <option value="{{ $subcategory->id }}">{{ $subcategory->name }}</option>
                 @endforeach
             </select>
+            <x-jet-input-error class="mt-2 text-xs font-semibold" for="subcategory_id" />
         </div>
 
         {{-- INPUT NAME --}}
         <div class="col-span-2">
             <x-jet-label class="mb-2" value="Name" />
             <x-jet-input wire:model="name" type="text" placeholder="Product name..." class="w-full" />
+            <x-jet-input-error class="mt-2 text-xs font-semibold" for="name" />
         </div>
 
         {{-- INPUT SLUG --}}
         <div class="col-span-2">
             <x-jet-label class="mb-2" value="Slug" />
             <x-jet-input wire:model="slug" type="text" placeholder="Product slug..." class="w-full bg-gray-200" disabled />
+            <x-jet-input-error class="mt-2 text-xs font-semibold" for="slug" />
         </div>
 
         {{-- TEXTAREA DESCRIPTION --}}
-        <div class="col-span-2" wire:ignore>
-            <x-jet-label class="mb-2" value="Description" />
-            <textarea
-                x-ref="miEditor"
-                wire:model="description"
-                class="w-full input-control" rows="6"
-                x-data
-                x-init="ClassicEditor
-                .create( $refs.miEditor )
-                .then(function(editor) {
-                    editor.model.document.on('change:data', () => {
-                        @this.set('description', editor.getData())
+        <div class="col-span-2">
+            <div wire:ignore>
+                <x-jet-label class="mb-2" value="Description" />
+                <textarea
+                    x-ref="miEditor"
+                    wire:model="description"
+                    class="w-full input-control" rows="6"
+                    x-data
+                    x-init="ClassicEditor
+                    .create( $refs.miEditor )
+                    .then(function(editor) {
+                        editor.model.document.on('change:data', () => {
+                            @this.set('description', editor.getData())
+                        })
                     })
-                })
-                .catch( error => {
-                    console.error( error );
-                } );">
-            </textarea>
+                    .catch( error => {
+                        console.error( error );
+                    } );">
+                </textarea>
+            </div>
+            <x-jet-input-error class="mt-2 text-xs font-semibold"  for="description" />
         </div>
 
         {{-- BRANDS --}}
@@ -71,12 +78,14 @@
                     <option value="{{ $brand->id }}">{{ $brand->name }}</option>
                 @endforeach
             </select>
+            <x-jet-input-error class="mt-2 text-xs font-semibold" for="brand_id" />
         </div>
 
         {{-- PRICE --}}
         <div>
             <x-jet-label class="mb-2" value="Price" />
             <x-jet-input wire:model="price" type="number" step=".01" class="w-full" />
+            <x-jet-input-error class="mt-2 text-xs font-semibold" for="price" />
         </div>
 
         {{-- Producto sin color ni talle (solo cantidad) --}}
@@ -85,9 +94,20 @@
                 <div>
                     <x-jet-label wire:model="quantity" class="mb-2" value="Quantity" />
                     <x-jet-input type="number" class="w-full" />
+                    <x-jet-input-error class="mt-2 text-xs font-semibold" for="quantity" />
                 </div>
             @endif
         @endif
+
+        <div class="col-span-2 flex">
+            <x-jet-button
+                wire:click="save"
+                wire:target="save"
+                wire:loading.attr="disabled"
+                class="ml-auto">
+                Create product
+            </x-jet-button>
+        </div>
 
     </div>
 
