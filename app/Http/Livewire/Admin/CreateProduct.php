@@ -83,7 +83,7 @@ class CreateProduct extends Component
         }
 
         $product->save();
-
+        session()->flash('flash.banner', 'Product created succesfully!');
         return redirect()->route('admin.index');
     }
 
