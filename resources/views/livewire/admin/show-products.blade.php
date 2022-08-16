@@ -1,6 +1,12 @@
 <div>
     <x-slot name="header">
-        <h1 class="font-semibold text-gray-600 text-xl leading-tight">Product list</h1>
+        <div class="flex items-center">
+            <h1 class="font-semibold text-gray-600 text-xl leading-tight">Product list</h1>
+
+            <x-jet-secondary-button class="ml-auto" href="{{ route('admin.products.create')}} ">
+                Add new product
+            </x-jet-secondary-button>
+        </div>
     </x-slot>
 
     {{-- TABLA --}}
