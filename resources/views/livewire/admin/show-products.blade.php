@@ -8,6 +8,14 @@
 
         <x-table-responsive>
 
+            <div class="px-6 py-4">
+                <x-jet-input type="text"
+                    wire:model="search"
+                    class="w-full"
+                    placeholder="Filter your product search here..."
+                />
+            </div>
+
             @if ($products->count())
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
@@ -104,7 +112,7 @@
 
             @else
                 <div class="px-6 py-4">
-                    There are no records matching your search...
+                    <p class="text-center font-semibold">There are no records matching your search...</p>
                 </div>
             @endif
 
