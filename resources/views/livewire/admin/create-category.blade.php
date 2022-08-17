@@ -12,20 +12,23 @@
         <x-slot name="form">
             {{-- Name --}}
             <div class="col-span-6">
-                <x-jet-label class="mb-2">Category name</x-jet-label>
-                <x-jet-input type="text" class="w-full"></x-jet-input>
+                <x-jet-label class="mb-2">Name</x-jet-label>
+                <x-jet-input wire:model="createForm.name" type="text" class="w-full" placeholder="Category name..."></x-jet-input>
+                <x-jet-input-error class="mt-2 text-xs font-semibold" for="createForm.name" />
             </div>
 
             {{-- Slug --}}
             <div class="col-span-6">
-                <x-jet-label class="mb-2">Category slug</x-jet-label>
-                <x-jet-input type="text" class="w-full"></x-jet-input>
+                <x-jet-label class="mb-2">Slug</x-jet-label>
+                <x-jet-input wire:model="createForm.slug" disabled type="text" class="w-full bg-gray-200" placeholder="Category slug..."></x-jet-input>
+                <x-jet-input-error class="mt-2 text-xs font-semibold" for="createForm.slug" />
             </div>
 
             {{-- Icon --}}
             <div class="col-span-6">
-                <x-jet-label class="mb-2">Category icon</x-jet-label>
-                <x-jet-input type="text" class="w-full"></x-jet-input>
+                <x-jet-label class="mb-2">Icon</x-jet-label>
+                <x-jet-input wire:model.defer="createForm.icon" type="text" class="w-full" placeholder="Category icon..."></x-jet-input>
+                <x-jet-input-error class="mt-2 text-xs font-semibold" for="createForm.icon" />
             </div>
 
             {{-- Brands --}}
@@ -34,22 +37,28 @@
                 <div class="grid grid-cols-4">
                     @foreach ($brands as $brand)
                         <x-jet-label>
-                            <x-jet-checkbox></x-jet-checkbox>
+                            <x-jet-checkbox
+                                wire:model.defer="createForm.brands"
+                                name="brands[]"
+                                value="{{ $brand->id }}">
+                            </x-jet-checkbox>
                             {{ $brand->name }}
                         </x-jet-label>
                     @endforeach
                 </div>
+                <x-jet-input-error class="mt-2 text-xs font-semibold" for="createForm.brands" />
             </div>
 
             {{-- Image --}}
             <div class="col-span-6">
-                <x-jet-label class="mb-2">Category image</x-jet-label>
-                <x-jet-input type="file" class="w-full"></x-jet-input>
+                <x-jet-label class="mb-2">Image</x-jet-label>
+                <x-jet-input id="{{ $rand }}" wire:model="createForm.image" type="file" class="w-full" accept="image/*"></x-jet-input>
+                <x-jet-input-error class="mt-2 text-xs font-semibold" for="createForm.image" />
             </div>
         </x-slot>
 
         <x-slot name="actions">
-            <x-jet-button>
+            <x-jet-button class="px-6">
                 Add
             </x-jet-button>
         </x-slot>
