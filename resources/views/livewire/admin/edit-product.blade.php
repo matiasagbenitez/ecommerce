@@ -90,7 +90,7 @@
             </div>
 
             @if ($this->subcategory)
-                @if (!$this->subcategory->color && !$this->subcategory->color)
+                @if (!$this->subcategory->color && !$this->subcategory->size)
                     <div>
                         <x-jet-label class="mb-2" value="Quantity" />
                         <x-jet-input wire:model="product.quantity" type="number" class="w-full" />

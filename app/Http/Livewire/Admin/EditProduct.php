@@ -67,10 +67,10 @@ class EditProduct extends Component
     {
         $rules = $this->rules;
 
-        $rules['product.slug'] = 'required|unique:products,slug,' . $this->product->id;
+        $rules['slug'] = 'required|unique:products,slug,' . $this->product->id;
 
         if ($this->product->subcategory_id) {
-            if (!$this->subcategory->color && !$this->subcategory->color) {
+            if (!$this->subcategory->color && !$this->subcategory->size) {
                 $rules['product.quantity'] = 'required|numeric';
             }
         }
