@@ -5,6 +5,15 @@
         </div>
     </x-slot>
 
+    <div class="mb-8" wire:ignore>
+        <form
+            method="POST"
+            action="{{ route('admin.products.files', $product) }}"
+            class="dropzone"
+            id="my-awesome-dropzone">
+        </form>
+    </div>
+
     <div class="bg-white shadow-xl p-6 rounded-lg">
         <div class="grid grid-cols-2 gap-6">
 
@@ -123,5 +132,18 @@
             @livewire('admin.color-product', ['product' => $product], key('color-product-' . $product->id))
         @endif
     @endif
+
+    @push('script')
+        <script>
+            Dropzone.options.myAwesomeDropzone = {
+                headers: {
+                    'X-CSRF-TOKEN' : "{{ csrf_token() }}"
+                },
+                acceptedFiles: 'image/*',
+                paramName: "file",
+                maxFilesize: 2,
+            };
+        </script>
+    @endpush
 
 </div>
