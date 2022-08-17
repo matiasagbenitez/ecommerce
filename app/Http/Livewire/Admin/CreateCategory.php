@@ -12,7 +12,7 @@ class CreateCategory extends Component
 {
     use WithFileUploads;
 
-    public $brands, $rand;
+    public $brands, $categories, $rand;
     public $createForm = [
         'name' => null,
         'slug' => null,
@@ -40,6 +40,7 @@ class CreateCategory extends Component
     public function mount()
     {
         $this->getBrands();
+        $this->getCategories();
         $this->rand = rand();
     }
 
@@ -51,6 +52,11 @@ class CreateCategory extends Component
     public function getBrands()
     {
         $this->brands = Brand::all();
+    }
+
+    public function getCategories()
+    {
+        $this->categories = Category::all();
     }
 
     public function save()
@@ -75,6 +81,8 @@ class CreateCategory extends Component
         // Reseteamos
         $this->reset('createForm');
         $this->rand = rand();
+        $this->getCategories();
+        $this->emit('saved');
     }
 
     public function render()

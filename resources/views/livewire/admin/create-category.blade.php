@@ -1,5 +1,6 @@
 <div>
-    <x-jet-form-section submit="save">
+    {{-- FORM SECTION --}}
+    <x-jet-form-section class="mb-6" submit="save">
 
         <x-slot name="title">
             Create new category
@@ -58,10 +59,53 @@
         </x-slot>
 
         <x-slot name="actions">
+            <x-jet-action-message class="mr-3" on="saved">Category created!</x-jet-action-message>
             <x-jet-button class="px-6">
                 Add
             </x-jet-button>
         </x-slot>
 
     </x-jet-form-section>
+
+    {{-- ACTION SECTION --}}
+    <x-jet-action-section>
+        <x-slot name="title">
+            Categories
+        </x-slot>
+
+        <x-slot name="description">
+            List of existing categories
+        </x-slot>
+
+        <x-slot name="content">
+            <table class="text-gray-600">
+                <thead class="border-b border-gray-300">
+                    <tr class="text-left">
+                        <th class="py-2 w-full">Name</th>
+                        <th class="py-2 text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    @foreach ($categories as $category)
+                        <tr>
+                            <td class="py-2">
+                                <span class="inline-block w-8 text-center mr-4">{!! $category->icon !!}</span>
+                                <span class="uppercase">{{ $category->name }}</span>
+                            </td>
+                            <td class="py-2">
+                                <div class="flex items-center justify-center gap-2">
+                                    <x-jet-button>
+                                        <i class="fas fa-edit"></i>
+                                    </x-jet-button>
+                                    <x-jet-danger-button>
+                                        <i class="fas fa-trash"></i>
+                                    </x-jet-danger-button>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </x-slot>
+    </x-jet-action-section>
 </div>
