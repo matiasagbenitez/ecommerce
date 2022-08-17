@@ -15,6 +15,8 @@ class ColorSize extends Component
     public $pivot, $pivot_color_id, $pivot_quantity;
     public $open = false;
 
+    protected $listeners = ['delete'];
+
     protected $rules = [
         'color_id' => 'required',
         'quantity' => 'required|numeric'
@@ -60,6 +62,12 @@ class ColorSize extends Component
 
         $this->reset(['color_id', 'quantity']);
         $this->emit('saved');
+        $this->size = $this->size->fresh();
+    }
+
+    public function delete(Pivot $pivot)
+    {
+        $pivot->delete();
         $this->size = $this->size->fresh();
     }
 

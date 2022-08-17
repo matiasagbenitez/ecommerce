@@ -60,7 +60,7 @@
                                     Update
                                 </x-jet-secondary-button>
 
-                                <x-jet-danger-button wire:click="$emit('deletePivot', {{ $size_color->pivot->id }})">
+                                <x-jet-danger-button wire:click="$emit('deleteColorSize', {{ $size_color->pivot->id }})">
                                     Delete
                                 </x-jet-danger-button>
                             </td>
