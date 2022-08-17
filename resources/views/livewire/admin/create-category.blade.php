@@ -1,5 +1,5 @@
 <div>
-    {{-- FORM SECTION --}}
+    {{-- CREATE CATEGORY - FORM SECTION --}}
     <x-jet-form-section class="mb-6" submit="save">
 
         <x-slot name="title">
@@ -67,7 +67,7 @@
 
     </x-jet-form-section>
 
-    {{-- ACTION SECTION --}}
+    {{--CATEGORY LIST - ACTION SECTION --}}
     <x-jet-action-section>
         <x-slot name="title">
             Categories
@@ -94,7 +94,7 @@
                             </td>
                             <td class="py-2">
                                 <div class="flex items-center justify-center gap-2">
-                                    <x-jet-button>
+                                    <x-jet-button wire:click="edit('{{$category->slug}}')">
                                         <i class="fas fa-edit"></i>
                                     </x-jet-button>
                                     <x-jet-danger-button wire:click="$emit('deleteCategory', '{{$category->slug}}')">
@@ -108,4 +108,83 @@
             </table>
         </x-slot>
     </x-jet-action-section>
+
+    {{-- MODAL - EDIT CATEGORY --}}
+    <x-jet-dialog-modal wire:model="editForm.open">
+        <x-slot name="title">
+            Edit category
+        </x-slot>
+
+        <x-slot name="content">
+            <div class="space-y-3">
+                {{-- Name --}}
+                <div>
+                    <x-jet-label class="mb-2">Name</x-jet-label>
+                    <x-jet-input wire:model="editForm.name" type="text" class="w-full" placeholder="Category name..."></x-jet-input>
+                    <x-jet-input-error class="mt-2 text-xs font-semibold" for="editForm.name" />
+                </div>
+
+                {{-- Slug --}}
+                <div>
+                    <x-jet-label class="mb-2">Slug</x-jet-label>
+                    <x-jet-input wire:model="editForm.slug" disabled type="text" class="w-full bg-gray-200" placeholder="Category slug..."></x-jet-input>
+                    <x-jet-input-error class="mt-2 text-xs font-semibold" for="editForm.slug" />
+                </div>
+
+                {{-- Icon --}}
+                <div>
+                    <x-jet-label class="mb-2">Icon</x-jet-label>
+                    <x-jet-input wire:model.defer="editForm.icon" type="text" class="w-full" placeholder="Category icon..."></x-jet-input>
+                    <x-jet-input-error class="mt-2 text-xs font-semibold" for="editForm.icon" />
+                </div>
+
+                {{-- Brands --}}
+                <div>
+                    <x-jet-label class="mb-2">Brands relateds</x-jet-label>
+                    <div class="grid grid-cols-5">
+                        @foreach ($brands as $brand)
+                            <x-jet-label>
+                                <x-jet-checkbox
+                                    wire:model.defer="editForm.brands"
+                                    name="brands[]"
+                                    value="{{ $brand->id }}">
+                                </x-jet-checkbox>
+                                {{ $brand->name }}
+                            </x-jet-label>
+                        @endforeach
+                    </div>
+                    <x-jet-input-error class="mt-2 text-xs font-semibold" for="editForm.brands" />
+                </div>
+
+                {{-- Image --}}
+                <div class="grid grid-cols-2">
+                    <div>
+                        <x-jet-label class="mb-2">Current image</x-jet-label>
+                        @if ($editImage)
+                            <img class="w-16 h-16 rounded-lg object-cover object-center" src="{{ $editImage->temporaryUrl() }}" alt="">
+                        @else
+                            <img class="w-16 h-16 rounded-lg object-cover object-center" src="{{ asset('storage/' . $editForm['image']) }}" alt="">
+                        @endif
+                    </div>
+                    <div>
+                        <x-jet-label class="mb-2">Update image</x-jet-label>
+                        <x-jet-input id="{{ $rand }}" wire:model="editImage" type="file" class="w-full" accept="image/*"></x-jet-input>
+                        <x-jet-input-error class="mt-2 text-xs font-semibold" for="editImage" />
+                    </div>
+                </div>
+            </div>
+        </x-slot>
+
+        <x-slot name="footer">
+            <div class="flex flex-end gap-3">
+                <x-jet-danger-button wire:click="$set('editForm.open', false)">
+                    Cancel
+                </x-jet-danger-button>
+
+                <x-jet-button wire:click="update">
+                    Save changes
+                </x-jet-button>
+            </div>
+        </x-slot>
+    </x-jet-dialog-modal>
 </div>
