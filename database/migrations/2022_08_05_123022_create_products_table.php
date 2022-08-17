@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum('status', [Product::BORRADOR, Product::PUBLICADO])->default(Product::BORRADOR);   // 1 = borrador, 2 = publicado
 
             $table->unsignedBigInteger('subcategory_id');
-            $table->foreign('subcategory_id')->references('id')->on('subcategories');
+            $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('cascade');;
 
             $table->unsignedBigInteger('brand_id');
             $table->foreign('brand_id')->references('id')->on('brands');

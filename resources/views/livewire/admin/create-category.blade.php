@@ -61,7 +61,7 @@
         <x-slot name="actions">
             <x-jet-action-message class="mr-3" on="saved">Category created!</x-jet-action-message>
             <x-jet-button class="px-6">
-                Add
+                Create category
             </x-jet-button>
         </x-slot>
 
@@ -97,7 +97,7 @@
                                     <x-jet-button>
                                         <i class="fas fa-edit"></i>
                                     </x-jet-button>
-                                    <x-jet-danger-button>
+                                    <x-jet-danger-button wire:click="$emit('deleteCategory', '{{$category->slug}}')">
                                         <i class="fas fa-trash"></i>
                                     </x-jet-danger-button>
                                 </div>
