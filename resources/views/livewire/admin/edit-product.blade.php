@@ -34,6 +34,8 @@
         </section>
     @endif
 
+   @livewire('admin.status-product', ['product' => $product], key('status-product' . $product->id))
+
     <div class="bg-white shadow-xl p-6 rounded-lg">
         <div class="grid grid-cols-2 gap-6">
 
