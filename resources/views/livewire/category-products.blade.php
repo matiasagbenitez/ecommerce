@@ -7,10 +7,17 @@
                     <li class="bg-white rounded-lg shadow mb-4 overflow-hidden {{ $loop->last ? '' : 'sm:mr-4' }}">
                         <article>
                             <figure>
-                                <a href="{{ route('products.show', $product)}}">
-                                    <img class="h-48 w-full object-cover object-center"
-                                        src="{{ asset('storage/' . $product->image->first()->url) }}" alt="">
-                                </a>
+                                @if ($product->image->count())
+                                    <a href="{{ route('products.show', $product)}}">
+                                        <img class="h-48 w-full object-cover object-center"
+                                            src="{{ asset('storage/' . $product->image->first()->url) }}" alt="">
+                                    </a>
+                                @else
+                                    <a href="{{ route('products.show', $product)}}">
+                                        <img class="h-48 w-full object-cover object-center"
+                                            src="https://images.pexels.com/photos/4883800/pexels-photo-4883800.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
+                                    </a>
+                                @endif
                             </figure>
                             <div class="p-2">
                                 <h1 class="font-semibold text-neutral-700"><a

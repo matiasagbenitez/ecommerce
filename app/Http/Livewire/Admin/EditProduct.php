@@ -6,9 +6,11 @@ use App\Models\Brand;
 use App\Models\Product;
 use Livewire\Component;
 use App\Models\Category;
+use App\Models\Image;
 use App\Models\Subcategory;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Storage;
 
 class EditProduct extends Component
 {
@@ -17,6 +19,8 @@ class EditProduct extends Component
     public $subcategories;
     public $brands;
     public $slug;
+
+    protected $listeners = ['refreshProduct'];
 
     protected $rules = [
         'category_id' => 'required',
@@ -82,6 +86,18 @@ class EditProduct extends Component
         $this->emit('saved');
 
         // return redirect()->route('admin.index');
+    }
+
+    public function deleteImage(Image $image)
+    {
+        Storage::delete([$image->url]);
+        $image->delete();
+        $this->product = $this->product->fresh();
+    }
+
+    public function refreshProduct()
+    {
+        $this->product = $this->product->fresh();
     }
 
     public function render()

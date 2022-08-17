@@ -5,7 +5,7 @@
         </div>
     </x-slot>
 
-    <div class="mb-8" wire:ignore>
+    <div class="mb-4" wire:ignore>
         <form
             method="POST"
             action="{{ route('admin.products.files', $product) }}"
@@ -13,6 +13,26 @@
             id="my-awesome-dropzone">
         </form>
     </div>
+
+    @if ($product->image->count())
+        <section class="bg-white shadow-lg rounded-lg p-6 mb-4">
+            <h1 class="text-lg text-gray-700 text-center font-semibold mb-2">Product images</h1>
+            <ul class="flex flex-wrap gap-4 justify-center">
+                @foreach ($product->image as $image)
+                    <li class="relative" wire:key="image-{{$image->id}}">
+                        <img class="w-32 h-20 object-cover object-center" src="{{ asset('storage/' . $image->url) }}" alt="Product image">
+                        <x-jet-danger-button
+                            wire:click="deleteImage({{ $image->id }})"
+                            wire:loading.attr="disabled"
+                            wire:target="deleteImage"
+                            class="absolute right-2 top-2 px-2 py-1">
+                            X
+                        </x-jet-danger-button>
+                    </li>
+                @endforeach
+            </ul>
+        </section>
+    @endif
 
     <div class="bg-white shadow-xl p-6 rounded-lg">
         <div class="grid grid-cols-2 gap-6">
@@ -142,6 +162,12 @@
                 acceptedFiles: 'image/*',
                 paramName: "file",
                 maxFilesize: 2,
+                complete: function(file) {
+                    this.removeFile(file);
+                },
+                queuecomplete: function() {
+                    Livewire.emit('refreshProduct');
+                }
             };
         </script>
     @endpush
