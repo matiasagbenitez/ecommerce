@@ -90,7 +90,9 @@
                         <tr>
                             <td class="py-2">
                                 <span class="inline-block w-8 text-center mr-4">{!! $category->icon !!}</span>
-                                <span class="uppercase">{{ $category->name }}</span>
+                                <a href="{{ route('admin.categories.show', $category) }}" class="uppercase hover:font-bold hover:underline">
+                                    {{ $category->name }}
+                                </a>
                             </td>
                             <td class="py-2">
                                 <div class="flex items-center justify-center gap-2">

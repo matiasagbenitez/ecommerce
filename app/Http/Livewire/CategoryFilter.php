@@ -14,9 +14,21 @@ class CategoryFilter extends Component
 
     use WithPagination;
 
+    protected $queryString = ['subcategoryC', 'brandC'];
+
     public function cleanFilters()
     {
-        $this->reset(['subcategoryC', 'brandC']);
+        $this->reset(['subcategoryC', 'brandC', 'page']);
+    }
+
+    public function updatedSubcategoryC()
+    {
+        $this->resetPage();
+    }
+
+    public function updatedBrandC()
+    {
+        $this->resetPage();
     }
 
     public function render()
