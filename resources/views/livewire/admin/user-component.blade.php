@@ -39,46 +39,50 @@
                             </th>
                             <th scope="col"
                                 class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Action
+                                Admin
                             </th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
 
                         @foreach ($users as $user)
-                            <tr>
+                            <tr wire:key="{{$user->email}}">
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-gray-700">
+                                    <div class="text-gray-700 text-sm">
                                         {{ $user->id }}
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-gray-700">
+                                    <div class="font-semibold text-gray-700 text-sm ">
                                         {{ $user->name }}
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-gray-700">
+                                    <div class="text-gray-700 italic text-sm">
                                         {{ $user->email }}
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-center text-gray-700">
+                                    <div class="text-center text-gray-700 text-sm">
                                         @if ($user->roles->count())
                                             Admin
                                         @else
-                                            -
+                                            No role assigned
                                         @endif
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center justify-center gap-2">
-                                        <x-jet-button wire:click="#">
-                                            <i class="fas fa-edit"></i>
-                                        </x-jet-button>
-                                        <x-jet-danger-button wire:click="#">
-                                            <i class="fas fa-trash"></i>
-                                        </x-jet-danger-button>
+                                        <label>
+                                            <input wire:change="assignRole({{ $user->id }}, $event.target.value)" {{ count($user->roles) ? 'checked' : '' }}
+                                                type="radio" value="1" name="{{ $user->email }}">
+                                            Yes
+                                        </label>
+                                        <label>
+                                            <input wire:change="assignRole({{ $user->id }}, $event.target.value)" {{ count($user->roles) ? '' : 'checked' }}
+                                                type="radio" value="0" name="{{ $user->email }}" class="ml-2">
+                                            No
+                                        </label>
                                     </div>
                                 </td>
                              </tr>
