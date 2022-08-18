@@ -1,5 +1,5 @@
 <div>
-    <a class="py-2 px-4 text-sm flex items-center text-neutral-500 hover:bg-orange-500 hover:text-white" href="#">
+    <a href="{{ route('shopping-cart') }}" class="py-2 px-4 text-sm flex items-center text-neutral-500 hover:bg-orange-500 hover:text-white" href="#">
         <span class="flex justify-center w-9">
             <i class="fas fa-shopping-cart"></i>
         </span>

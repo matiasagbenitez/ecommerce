@@ -34,9 +34,9 @@
         $preference->save();
     @endphp --}}
 
-    <div class="container my-3 grid grid-cols-5 gap-5">
+    <div class="container my-3 grid grid-cols-1 lg:grid-cols-5 gap-5">
 
-        <div class="col-span-3">
+        <div class="lg:col-span-3">
             <div class="bg-white rounded-lg shadow-lg p-3">
                 <p class="text-gray-700 uppercase">Order<span class="font-semibold"> #{{ $order->id }} </span></p>
             </div>
@@ -129,7 +129,7 @@
         </div>
 
         {{-- PAYPAL --}}
-        <div class="col-span-2">
+        <div class="lg:col-span-2">
             <div class="bg-white rounded-lg shadow-lg p-3">
                 <p class="font-bold text-gray-700 uppercase">Payment</p>
                 <div class="flex justify-between items-center mb-5">

@@ -4,7 +4,7 @@
 
         <h1 class="font-bold text-gray-700 uppercase my-4">My orders</h1>
 
-        <section class="grid grid-cols-5 gap-5 text-white">
+        <section class="grid grid-cols-1 lg:grid-cols-5 gap-5 text-white">
             <a href="{{ route('orders.index') . "?status=1" }}" class="bg-red-500 bg-opacity-75 rounded-lg p-6 hover:cursor-pointer">
                 <p class="text-center text-xl">{{ $pendiente }}</p>
                 <p class="text-center uppercase">Pending</p>

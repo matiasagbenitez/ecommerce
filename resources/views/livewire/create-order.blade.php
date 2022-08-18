@@ -1,6 +1,6 @@
-<div class="container my-4 grid grid-cols-5 gap-5">
+<div class="container my-4 grid grid-cols-1 lg:grid-cols-5 gap-5">
 
-    <div class="col-span-3">
+    <div class="order-2 lg:col-span-3 lg:order-1">
 
         <p class="mb-3 text-lg text-gray-700 font-semibold">Contact data</p>
 
@@ -106,7 +106,7 @@
 
     </div>
 
-    <div class="col-span-2">
+    <div class="order-1 lg:col-span-2 lg:order-2">
         <p class="mb-3 text-lg text-gray-700 font-semibold">Your shopping cart</p>
 
         <div class="bg-white rounded-lg shadow p-4">

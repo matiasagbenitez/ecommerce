@@ -4,7 +4,7 @@
 
             <h1 class="font-bold text-gray-700 uppercase my-4">Orders</h1>
 
-            <section class="grid grid-cols-4 gap-5 text-white">
+            <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 text-white">
 
                 <a href="{{ route('admin.orders.index') . "?status=2" }}" class="bg-gray-500 bg-opacity-75 rounded-lg p-6 hover:cursor-pointer">
                     <p class="text-center text-xl">{{ $pagado }}</p>

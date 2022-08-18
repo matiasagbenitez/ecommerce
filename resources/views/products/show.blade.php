@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="container py-6">
-        <div class="grid grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
             <div>
                 <div class="flexslider">
@@ -11,6 +11,10 @@
                             </li>
                         @endforeach
                     </ul>
+                </div>
+                <div class="-mt-10 text-gray-700">
+                    <h2 class="font-semibold text-lg">Description</h2>
+                    <p class="text-sm">{!! $product->description !!}</p>
                 </div>
             </div>
 
