@@ -13,6 +13,7 @@ use App\Http\Livewire\Admin\EditProduct;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Admin\ShowCategory;
 use App\Http\Livewire\Admin\ShowDepartment;
+use App\Http\Livewire\Admin\UserComponent;
 
 Route::get('/', ShowProducts::class)->name('admin.index');
 
@@ -33,3 +34,5 @@ Route::get('/departments', DepartmentComponent::class)->name('admin.departments.
 Route::get('/departments/{department}', ShowDepartment::class)->name('admin.departments.show');
 
 Route::get('/cities/{city}', CityComponent::class)->name('admin.cities.show');
+
+Route::get('/users', UserComponent::class)->name('admin.users.index');
