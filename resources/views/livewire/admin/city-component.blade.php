@@ -1,7 +1,7 @@
 <div>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight capitalize">
-            Department: {{ $department->name }}
+            City: {{ $city->name }}
         </h2>
     </x-slot>
 
@@ -10,32 +10,26 @@
         <x-jet-form-section class="mb-6" submit="save">
 
             <x-slot name="title">
-                Create new city
+                Create new district
             </x-slot>
 
             <x-slot name="description">
-                Complete the needed information to create a new city
+                Complete the needed information to create a new district
             </x-slot>
 
             <x-slot name="form">
                 {{-- Name --}}
                 <div class="col-span-6">
                     <x-jet-label class="mb-2">Name</x-jet-label>
-                    <x-jet-input wire:model.defer="createForm.name" type="text" class="w-full" placeholder="City name..."></x-jet-input>
+                    <x-jet-input wire:model.defer="createForm.name" type="text" class="w-full" placeholder="District name..."></x-jet-input>
                     <x-jet-input-error class="mt-2 text-xs font-semibold" for="createForm.name" />
-                </div>
-
-                <div class="col-span-6">
-                    <x-jet-label class="mb-2">Cost</x-jet-label>
-                    <x-jet-input wire:model.defer="createForm.cost" type="number" class="w-full" placeholder="City cost for shipping..."></x-jet-input>
-                    <x-jet-input-error class="mt-2 text-xs font-semibold" for="createForm.cost" />
                 </div>
             </x-slot>
 
             <x-slot name="actions">
-                <x-jet-action-message class="mr-3" on="saved">City created!</x-jet-action-message>
+                <x-jet-action-message class="mr-3" on="saved">District created!</x-jet-action-message>
                 <x-jet-button class="px-6">
-                    Create city
+                    Create district
                 </x-jet-button>
             </x-slot>
 
@@ -44,11 +38,11 @@
         {{-- SUBCATEGORY LIST - ACTION SECTION --}}
         <x-jet-action-section>
             <x-slot name="title">
-                Cities
+                Districts
             </x-slot>
 
             <x-slot name="description">
-                List of existing cities
+                List of existing districts
             </x-slot>
 
             <x-slot name="content">
@@ -60,19 +54,19 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
-                        @foreach ($cities as $city)
+                        @foreach ($districts as $district)
                             <tr>
                                 <td class="py-2">
-                                    <a href="{{ route('admin.cities.show', $city) }}" class="uppercase hover:font-bold hover:underline">
-                                        {{ $city->name }}
-                                    </a>
+                                    <span class="uppercase">
+                                        {{ $district->name }}
+                                    </span>
                                 </td>
                                 <td class="py-2">
                                     <div class="flex items-center justify-center gap-2">
-                                        <x-jet-button wire:click="edit('{{$city->id}}')">
+                                        <x-jet-button wire:click="edit('{{$district->id}}')">
                                             <i class="fas fa-edit"></i>
                                         </x-jet-button>
-                                        <x-jet-danger-button wire:click="$emit('deleteCity', '{{$city->id}}')">
+                                        <x-jet-danger-button wire:click="$emit('deleteDistrict', '{{$district->id}}')">
                                             <i class="fas fa-trash"></i>
                                         </x-jet-danger-button>
                                     </div>
@@ -87,22 +81,15 @@
         {{-- MODAL - EDIT SUBCATEGORY --}}
         <x-jet-dialog-modal wire:model="editForm.open">
             <x-slot name="title">
-                Edit city
+                Edit district
             </x-slot>
 
             <x-slot name="content">
                 {{-- Name --}}
                 <div class="mb-4">
                     <x-jet-label class="mb-2">Name</x-jet-label>
-                    <x-jet-input wire:model.defer="editForm.name" type="text" class="w-full" placeholder="City name..."></x-jet-input>
+                    <x-jet-input wire:model.defer="editForm.name" type="text" class="w-full" placeholder="District name..."></x-jet-input>
                     <x-jet-input-error class="mt-2 text-xs font-semibold" for="editForm.name" />
-                </div>
-
-                {{-- Cost --}}
-                <div class="mb-4">
-                    <x-jet-label class="mb-2">Cost</x-jet-label>
-                    <x-jet-input wire:model.defer="editForm.cost" type="text" class="w-full" placeholder="City cost for shipping..."></x-jet-input>
-                    <x-jet-input-error class="mt-2 text-xs font-semibold" for="editForm.cost" />
                 </div>
             </x-slot>
 
@@ -122,7 +109,7 @@
 
     @push('script')
         <script>
-            Livewire.on('deleteCity', cityId => {
+            Livewire.on('deleteDistrict', districtId => {
                 Swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
@@ -133,7 +120,7 @@
                     confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        Livewire.emitTo('admin.show-department', 'delete', cityId);
+                        Livewire.emitTo('admin.city-component', 'delete', districtId);
                         Swal.fire(
                             'Deleted!',
                             'Your file has been deleted.',
