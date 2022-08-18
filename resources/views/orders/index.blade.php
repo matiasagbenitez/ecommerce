@@ -46,75 +46,82 @@
             </a>
         </section>
 
-        <section class="bg-white shadow-lg rounded-lg my-8 p-6 text-gray-700">
-            <h1 class="uppercase text-lg mb-3">Recent orders</h1>
-            <ul>
-                @foreach ($orders as $order)
-                    <li>
-                        <a href="{{ route('orders.show', $order) }}" class="p-2 hover:bg-gray-100 flex items-center border-t">
-                            {{-- Íconos --}}
-                            <span class="w-12 text-center">
-                                @switch($order->status)
-                                    @case(1)
-                                        <i class="fas fa-business-time text-red-500 text-opacity-75"></i>
-                                        @break
-                                    @case(2)
-                                        <i class="fas fa-credit-card text-gray-500 text-opacity-75"></i>
-                                        @break
-                                    @case(3)
-                                        <i class="fas fa-truck text-yellow-500 text-opacity-75"></i>
-                                        @break
-                                    @case(4)
-                                        <i class="fas fa-check-circle text-indigo-500 text-opacity-75"></i>
-                                        @break
-                                    @case(5)
-                                        <i class="fas fa-times-circle text-green-500 text-opacity-75"></i>
-                                        @break
-                                    @default
-
-                                @endswitch
-                            </span>
-                            {{-- Detalles --}}
-                            <span class="text-sm">Order #{{$order->id}}
-                                <br>
-                                <span class="text-xs italic">{{ $order->created_at->diffForHumans() }}</span>
-                            </span>
-                            <div class="ml-auto w-24">
-                                <span class="font-bold">
+        @if($orders->count())
+            <section class="bg-white shadow-lg rounded-lg my-8 p-6 text-gray-700">
+                <h1 class="uppercase text-lg mb-3">Recent orders</h1>
+                <ul>
+                    @foreach ($orders as $order)
+                        <li>
+                            <a href="{{ route('orders.show', $order) }}" class="p-2 hover:bg-gray-100 flex items-center border-t">
+                                {{-- Íconos --}}
+                                <span class="w-12 text-center">
                                     @switch($order->status)
                                         @case(1)
-                                            Pending
+                                            <i class="fas fa-business-time text-red-500 text-opacity-75"></i>
                                             @break
                                         @case(2)
-                                            Paid
+                                            <i class="fas fa-credit-card text-gray-500 text-opacity-75"></i>
                                             @break
                                         @case(3)
-                                            Shipped
+                                            <i class="fas fa-truck text-yellow-500 text-opacity-75"></i>
                                             @break
                                         @case(4)
-                                            Delivered
+                                            <i class="fas fa-check-circle text-indigo-500 text-opacity-75"></i>
                                             @break
                                         @case(5)
-                                            Canceled
+                                            <i class="fas fa-times-circle text-green-500 text-opacity-75"></i>
                                             @break
                                         @default
 
                                     @endswitch
                                 </span>
-                                <br>
-                                <span class="text-sm">
-                                    ${{ $order->total }}
+                                {{-- Detalles --}}
+                                <span class="text-sm">Order #{{$order->id}}
+                                    <br>
+                                    <span class="text-xs italic">{{ $order->created_at->diffForHumans() }}</span>
                                 </span>
-                            </div>
-                            <span>
-                                <i class="fas fa-angle-right ml-6"></i>
-                            </span>
-                        </a>
-                    </li>
-                @endforeach
-            </ul>
-            {{ $orders->links() }}
-        </section>
+                                <div class="ml-auto w-24">
+                                    <span class="font-bold">
+                                        @switch($order->status)
+                                            @case(1)
+                                                Pending
+                                                @break
+                                            @case(2)
+                                                Paid
+                                                @break
+                                            @case(3)
+                                                Shipped
+                                                @break
+                                            @case(4)
+                                                Delivered
+                                                @break
+                                            @case(5)
+                                                Canceled
+                                                @break
+                                            @default
+
+                                        @endswitch
+                                    </span>
+                                    <br>
+                                    <span class="text-sm">
+                                        ${{ $order->total }}
+                                    </span>
+                                </div>
+                                <span>
+                                    <i class="fas fa-angle-right ml-6"></i>
+                                </span>
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+                {{ $orders->links() }}
+            </section>
+        @else
+            <div class="bg-white shadow-lg rounded-lg my-8 p-6 text-gray-700">
+                <p class="text-center">There are no purchase orders!</p>
+            </div>
+        @endif
+
     </div>
 
 </x-app-layout>

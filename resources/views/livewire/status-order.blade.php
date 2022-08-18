@@ -1,5 +1,4 @@
-<x-app-layout>
-
+<div>
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 my-4">
 
         {{-- Status --}}
@@ -30,15 +29,38 @@
             </div>
         </div>
 
-        <div class="bg-white rounded-lg shadow-lg p-3 flex items-center justify-between">
+        <div class="bg-white rounded-lg shadow-lg p-3">
             <p class="text-gray-700 uppercase">Order<span class="font-semibold"> #{{ $order->id }} </span></p>
-            @if ($order->status == 1)
-                <a href="{{ route('orders.payment', $order) }}">
-                    <x-jet-secondary-button class="px-5 bg-orange-500 border-orange-500 text-white font-bold hover:text-white hover:bg-orange-600">
-                        Go pay
-                    </x-jet-secondary-button>
-                </a>
-            @endif
+            <form wire:submit.prevent="update">
+                <div class="flex space-x-3 justify-between items-center mt-2">
+                    <div class="flex">
+                        {{-- Stauts --}}
+                        <x-jet-label>
+                            <input type="radio" name="status" value="2" wire:model="status">
+                            Paid
+                        </x-jet-label>
+                        <x-jet-label>
+                            <input type="radio" name="status" value="3" class="ml-3" wire:model="status">
+                            Shipped
+                        </x-jet-label>
+                        <x-jet-label>
+                            <input type="radio" name="status" value="4" class="ml-3" wire:model="status">
+                            Delivered
+                        </x-jet-label>
+                        <x-jet-label>
+                            <input type="radio" name="status" value="5" class="ml-3" wire:model="status">
+                            Canceled
+                        </x-jet-label>
+                    </div>
+
+                    {{-- Button --}}
+                    <div>
+                        <x-jet-button>
+                            Update
+                        </x-jet-button>
+                    </div>
+                </div>
+            </form>
         </div>
 
         <div class="bg-white rounded-lg shadow-lg p-3 my-4">
@@ -110,5 +132,4 @@
         </div>
 
     </div>
-
-</x-app-layout>
+</div>
