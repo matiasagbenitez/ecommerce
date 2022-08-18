@@ -32,7 +32,9 @@ class OrderController extends Controller
         $this->authorize('author', $order);
 
         $items = \json_decode($order->content);
-        return view('orders.show', compact('order', 'items'));
+        $shipping_data = \json_decode($order->shipping_data);
+
+        return view('orders.show', compact('order', 'items', 'shipping_data'));
     }
 
     public function pay(Order $order, Request $request)

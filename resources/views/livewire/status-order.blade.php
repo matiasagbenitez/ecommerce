@@ -72,9 +72,9 @@
                         <p class="text-sm italic">124 Conch Street</p>
                     @else
                         <p class="text-sm">Products will be sent to:</p>
-                        <p class="text-sm italic">{{ $order->adress }}</p>
-                        <p class="text-sm italic">{{ $order->department->name }} - {{ $order->city->name }} -
-                            {{ $order->district->name }}</p>
+                        <p class="text-sm italic">{{ $shipping_data->adress }}</p>
+                        <p class="text-sm italic">{{ $shipping_data->department }} - {{ $shipping_data->city }} -
+                            {{ $shipping_data->district }}</p>
                     @endif
                 </div>
                 <div>

@@ -26,14 +26,16 @@ return new class extends Migration
             $table->string('adress')->nullable();
             $table->string('references')->nullable();
 
-            $table->unsignedBigInteger('department_id')->nullable();
-            $table->foreign('department_id')->references('id')->on('departments');
+            // $table->unsignedBigInteger('department_id')->nullable();
+            // $table->foreign('department_id')->references('id')->on('departments');
 
-            $table->unsignedBigInteger('city_id')->nullable();
-            $table->foreign('city_id')->references('id')->on('cities');
+            // $table->unsignedBigInteger('city_id')->nullable();
+            // $table->foreign('city_id')->references('id')->on('cities');
 
-            $table->unsignedBigInteger('district_id')->nullable();
-            $table->foreign('district_id')->references('id')->on('districts');
+            // $table->unsignedBigInteger('district_id')->nullable();
+            // $table->foreign('district_id')->references('id')->on('districts');
+
+            $table->json('shipping_data')->nullable();
 
             $table->timestamps();
         });

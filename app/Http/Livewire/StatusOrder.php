@@ -23,6 +23,7 @@ class StatusOrder extends Component
     public function render()
     {
         $items = json_decode($this->order->content);
-        return view('livewire.status-order', compact('items'));
+        $shipping_data = json_decode($this->order->shipping_data);
+        return view('livewire.status-order', compact('items', 'shipping_data'));
     }
 }
