@@ -48,6 +48,35 @@
                     </div>
                 @endcan
 
+                @if ($product->reviews->isNotEmpty())
+                    <div class="mt-4">
+                        <h2 class="text-gray-700 font-bold text-md">Reviews</h2>
+                        <div class="mt-2 bg-white p-3 rounded-xl">
+                            @foreach ($product->reviews as $review)
+                                <div class="flex py-3 border-b">
+                                    <div class="flex-shrink-0">
+                                        <img class="w-10 h-10 object-cover rounded-full mr-4" src="{{ $review->user->profile_photo_url }}" alt="User image">
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="font-semibold text-gray-700 text-sm">{{ $review->user->name }}</p>
+                                        <div class="text-gray-800">
+                                            {!! $review->comment !!}
+                                        </div>
+
+                                        <p class="text-gray-700 text-xs">{{ $review->created_at->diffForHumans() }}</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-700 text-sm">
+                                            {{ $review->rating }}
+                                            <i class="fas fa-star text-yellow-500"></i>
+                                        </p>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+
             </div>
 
             <div>
@@ -60,8 +89,8 @@
                         </p>
                     </div>
                     <div>
-                        <a class="text-sm ml-10">5 <i class="fas fa-star text-sm text-yellow-500"></i></a>
-                        <a class="text-sm ml-2 text-orange-500 underline" href="#">(39 reviews)</a>
+                        <a class="text-sm ml-10">{{ round($product->reviews->avg('rating'), 1) }} <i class="fas fa-star text-sm text-yellow-500"></i></a>
+                        <a class="text-sm ml-2 text-orange-500 underline" href="#">({{ $product->reviews->count() }} reviews)</a>
                     </div>
                 </div>
 
