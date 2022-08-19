@@ -25,8 +25,10 @@
                     <div class="text-gray-700 mt-4">
                         <h2 class="font-bold text-lg mb-1">Publish a review</h2>
                         {{-- CKEDITOR --}}
-                        <form action="">
-                            <textarea id="editor"></textarea>
+                        <form action="{{ route('reviews.store', $product) }}" method="POST">
+                            @csrf
+                            <textarea name="comment" id="editor"></textarea>
+                            <x-jet-input-error for="comment" class="mt-2" />
 
                             <div class="flex items-center mt-4" x-data="{rating: 5}">
                                 <p class="mr-4 text-sm">Score:</p>
@@ -37,7 +39,7 @@
                                     <li x-bind:class="rating >= 4 ? 'text-yellow-500' : ''"><button x-on:click="rating=4" type="button" class="focus:outline-none"><i class="fas fa-star"></i></button></li>
                                     <li x-bind:class="rating >= 5 ? 'text-yellow-500' : ''"><button x-on:click="rating=5" type="button" class="focus:outline-none"><i class="fas fa-star"></i></button></li>
                                 </ul>
-                                <input class="hidden" type="number" x-model="rating">
+                                <input class="hidden" type="number" x-model="rating" name="rating">
                                 <x-jet-button class="ml-auto">
                                     Send review
                                 </x-jet-button>
